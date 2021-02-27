@@ -1,31 +1,62 @@
 <template>
   <section class="todoapp">
     <header class="header">
-      <h1>Todos</h1>
-      <input type="text" class="new-todo" placeholder="Ajouter une tâche" v-model="newTodo" @keyup.enter="addTodo">
+      <h1 class="logo">Todos</h1>
+      <p class="intro"><span class="introHello">Bonjour,</span> todoist </p>
+      <span class="todoCount">
+        <strong>
+          Vous avez {{ remaining }} tâche aujourd'hui<span v-if="todos.length > 1">s</span>
+          </strong>
+      </span>
+
+      <i class="fas fa-search"></i>
+      <input type="text" class="newTodo" placeholder="Ajouter une tâche" v-model="newTodo" @keyup.enter="addTodo">
     </header>
+
     <div class="main">
-      <input type="checkbox" v-model="allDone">
+      <p class="tasksIntro">Mes tâches</p>
+
       <ul class="todo-list">
         <li class="todo" v-for="todo in filteredTodos" :key="todo.name" :class="{completed: todo.completed, editing: todo === editing}">
           <div class="view">
-            <span class="drag">drag</span>
-            <input type="checkbox" v-model="todo.completed">
-            <span contenteditable="true" v-on:keydown.enter="doneEdit">
+
+            <div class="task">
+              <div class="checkboxContainer">
+            <input type="checkbox" v-model="todo.completed" class="checkbox">
+            <span class="overlay" v-if="completed" @click="todo.completed">
+              <svg
+         xmlns="http://www.w3.org/2000/svg"
+         width="24"
+         height="24"
+         viewBox="0 0 24 24"
+         fill="none"
+         stroke="currentColor"
+         stroke-width="2"
+         stroke-linecap="round"
+         stroke-linejoin="round"
+         stroke-dasharray="24"
+         stroke-dashoffset="-24"
+         class="icon">
+              <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </span>
+            </div>
+            <span contenteditable="true" v-on:keydown.enter="doneEdit" class="taskItem">
               {{ todo.name}}
             </span>
-            <button class="destroy" @click.prevent="deleteTodo(todo)">x</button>
+            </div>
+            <div class="editTask">
+            <span class="destroy" @click.prevent="deleteTodo(todo)"><i class="far fa-minus-square"></i>
+            </span>
+            <span class="drag"><i class="fas fa-arrows-alt"></i></span>
+            </div>
           </div>
         </li>
 
       </ul>
     </div>
     <footer class="footer" v-show="todos.length > 0">
-      <span class="todo-count">
-        <strong>
-          Il vous reste {{ remaining }} tâche<span v-if="todos.length > 1">s</span>.
-          </strong>
-      </span>
+      <input type="checkbox" v-model="allDone">
       <ul>
         <li><a href="#" :class="{selected: filter === 'all'}" @click.prevent="filter = 'all'">Toutes<span v-if="todos.length > 0"> ({{ todos.length }})</span></a></li>
         <li><a href="#" :class="{selected: filter === 'todo'}" @click.prevent="filter = 'todo'">A faire<span v-if="todos.length > 0"> ({{ remaining }})</span></a></li>
@@ -67,7 +98,6 @@ export default {
       this.editing = todo
     },
     doneEdit (e) {
-
       this.editing = null
       e.preventDefault()
     }
@@ -102,4 +132,5 @@ export default {
 }
 </script>
 
-<style src="./todos.css"></style>
+<style src="./styles/_reset.css"></style>
+<style src="./styles/todos.css"></style>
