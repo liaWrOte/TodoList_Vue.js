@@ -4,6 +4,9 @@ body {
   height: 100vh;
   font-family: 'Poppins', sans-serif;
   font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-stroke: 0.45px rgba(0, 0, 0, 0.1);
 }
 
 .todoapp {
@@ -54,7 +57,7 @@ body {
   background-color: #7987FB;
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
-  height: 50%;
+  height: 45%;
   padding: 25px;
   -webkit-box-shadow: 1px 5px 15px -6px rgba(0,0,0,0.61);
   box-shadow: 1px 5px 15px -6px rgba(0,0,0,0.61);
@@ -64,6 +67,26 @@ body {
   color: #FFFFFF;
   font-weight: 900;
   margin-bottom: 15px;
+}
+
+.task {
+  line-height: 20px;
+  vertical-align: middle;
+}
+
+.checkbox {
+  vertical-align: bottom;
+}
+.selectAllLabel {
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+.divider {
+  color: #FFFFFF;
+  margin: 4px 0 12px 0;
+  background-color: #FFFFFF;
+  border: solid 1px #FFFFFF;
 }
 
 .newTodo {
@@ -101,16 +124,53 @@ margin-left: 7px;
 
 .footer {
   background-color: #7987FB;
-  height: 27%;
+  height: 28%;
   overflow: hidden;
   padding: 25px;
+  margin-top: -1px;
 }
 .completed {
-  background-color: grey;
+  background-color: #EFEFEF;
+}
+
+.striped {
+  text-decoration: line-through;
 }
 
 .selected {
-  background-color: hotpink;
+  outline: solid 2px #FD8C8C;
+}
+
+.footerLabel {
+  color: #FFFFFF;
+  font-weight: 900;
+}
+
+.filter {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.filterItem {
+  background-color: #FFFFFF;
+  font-size: 13px;
+  padding: 2px 4px;
+}
+
+.deleteDoneTasks {
+  margin-top: 15px;
+  background-color: #FD8C8C;
+  border: none;
+  color: #FFFFFF;
+  font-weight: 900;
+  padding: 2px 4px;
+  font-size: 13px;
+  width: 100%;
+}
+
+.deleteDoneTasks {
+  border: solid 2px #FD8C8C;
 }
 
 

@@ -5,11 +5,10 @@
       <p class="intro"><span class="introHello">Bonjour,</span> todoist </p>
       <span class="todoCount">
         <strong>
-          Vous avez {{ remaining }} tâche aujourd'hui<span v-if="todos.length > 1">s</span>
+          Vous avez {{ remaining }} tâche<span v-if="todos.length > 1">s</span> aujourd'hui
           </strong>
       </span>
 
-      <i class="fas fa-search"></i>
       <input type="text" class="newTodo" placeholder="Ajouter une tâche" v-model="newTodo" @keyup.enter="addTodo">
     </header>
 
@@ -20,8 +19,8 @@
       <ul class="todo-list">
         <div class="selectAll">
           <input type="checkbox" v-model="allDone">
-          <span>Tout sélectionner</span>
-          <hr>
+          <span class="selectAllLabel">Tout sélectionner</span>
+          <hr class="divider">
 
         </div>
         <li class="todo" v-for="todo in filteredTodos" :key="todo.name" :class="{completed: todo.completed, editing: todo === editing}">
@@ -30,7 +29,7 @@
 
             <input type="checkbox" v-model="todo.completed" class="checkbox">
 
-            <span contenteditable="true" v-on:keydown.enter="doneEdit">
+            <span contenteditable="true" v-on:keydown.enter="doneEdit" :class="{striped : todo.completed}">
               {{ todo.name}}
             </span>
             </div>
@@ -44,13 +43,14 @@
 
       </ul>
     </div>
-    <footer class="footer" v-show="todos.length > 0">
-      <ul>
-        <li><a href="#" :class="{selected: filter === 'all'}" @click.prevent="filter = 'all'">Toutes<span v-if="todos.length > 0"> ({{ todos.length }})</span></a></li>
-        <li><a href="#" :class="{selected: filter === 'todo'}" @click.prevent="filter = 'todo'">A faire<span v-if="todos.length > 0"> ({{ remaining }})</span></a></li>
-        <li><a href="#" :class="{selected: filter === 'done'}" @click.prevent="filter = 'done'">Faites<span v-if="todos.length > 0"> ({{ completed }})</span></a></li>
+    <footer class="footer">
+      <span class="footerLabel" >Filtrer mes tâches</span>
+      <ul class="filter">
+        <li><a href="#" class="filterItem" :class="{selected: filter === 'all'}" @click.prevent="filter = 'all'">Toutes<span v-if="todos.length > 0"> ({{ todos.length }})</span></a></li>
+        <li><a href="#" class="filterItem" :class="{selected: filter === 'todo'}" @click.prevent="filter = 'todo'">A faire<span v-if="todos.length > 0"> ({{ remaining }})</span></a></li>
+        <li><a  class="filterItem" href="#" :class="{selected: filter === 'done'}" @click.prevent="filter = 'done'">Faites<span v-if="todos.length > 0"> ({{ completed }})</span></a></li>
       </ul>
-      <button @click.prevent="deleteDone" v-show="completed">Supprimer les tâches terminées</button>
+      <button @click.prevent="deleteDone" v-show="completed" class="deleteDoneTasks">Supprimer les tâches terminées</button>
     </footer>
   </section>
 </template>
