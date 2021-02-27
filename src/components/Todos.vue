@@ -9,14 +9,13 @@
       <ul class="todo-list">
         <li class="todo" v-for="todo in filteredTodos" :key="todo.name" :class="{completed: todo.completed, editing: todo === editing}">
           <div class="view">
+            <span class="drag">drag</span>
             <input type="checkbox" v-model="todo.completed">
-            <label @dblclick="editTodo(todo)">
+            <span contenteditable="true" v-on:keydown.enter="doneEdit">
               {{ todo.name}}
-            </label>
-
+            </span>
             <button class="destroy" @click.prevent="deleteTodo(todo)">x</button>
           </div>
-          <input type="text" class="edit" v-model="todo.name">
         </li>
 
       </ul>
@@ -66,6 +65,11 @@ export default {
     },
     editTodo (todo) {
       this.editing = todo
+    },
+    doneEdit (e) {
+
+      this.editing = null
+      e.preventDefault()
     }
   },
   computed: {

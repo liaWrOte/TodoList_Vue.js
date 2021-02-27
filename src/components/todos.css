@@ -1,3 +1,8 @@
+.todoapp {
+  width: 500px;
+  margin: 0 auto;
+  background-color: #FFFFFF;
+}
 .completed {
   background-color: grey;
 }
@@ -5,3 +10,10 @@
 .selected {
   background-color: hotpink;
 }
+
+.drag {
+  height: 20px;
+  width: 20px;
+  background-color: indianred;
+}
+
