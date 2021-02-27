@@ -90,41 +90,6 @@ body {
   margin-bottom: 10px;
 }
 
-.checkboxContainer {
-  position: relative;
-}
-
-.checkbox {
-  position: absolute;
-  opacity: 0;
-}
-
-.overlay {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  height: 24px;
-  width: 24px;
-  background-color: #F39C12;
-  border-radius: 8px;
-  border: 2px solid #F39C12;
-}
-
-.overlay .icon {
-  color: white;
-}
-
-.overlay.checked {
-  border-radius: 8px;
-  opacity: 1;
-  border: 2px solid #F39C12;
-}
-
-
-.taskItem {
-  margin-left: 40px;
-}
-
 .destroy {
   color: #FD8C8C;
 }
