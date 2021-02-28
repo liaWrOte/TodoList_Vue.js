@@ -100,8 +100,7 @@ body {
 .checkbox {
   vertical-align: bottom;
 }
-.se
-lectAllLabel {
+.selectAllLabel {
   color: #FFFFFF;
   font-weight: 600;
 }
@@ -121,6 +120,12 @@ lectAllLabel {
   font-family: 'Poppins', sans-serif;
   margin-top: 20px;
   width: 100%;
+  -webkit-box-shadow: 1px 5px 15px -6px rgba(0,0,0,0.61);
+  box-shadow: 1px 5px 15px -6px rgba(0,0,0,0.30);
+}
+
+.newTodo:focus {
+  border: solid 2px #FD8C8C;
 }
 
 .view {
