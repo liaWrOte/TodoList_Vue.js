@@ -1,6 +1,8 @@
 <template>
   <section class="todoapp">
+
     <header class="header">
+      <i class="far fa-sun"></i>
       <h1 class="logo">Todos</h1>
       <p class="intro"><span class="introHello">Bonjour,</span> todoist </p>
       <span class="todoCount">
@@ -18,11 +20,13 @@
 
       <ul class="todo-list">
         <div class="selectAll">
-          <input type="checkbox" v-model="allDone">
+          <input type="checkbox" v-model="allDone" class="checkbox">
           <span class="selectAllLabel">Tout sélectionner</span>
-          <hr class="divider">
+
 
         </div>
+        <hr class="divider">
+        <draggable v-model="filteredTodos" draggable=".todo">
         <li class="todo" v-for="todo in filteredTodos" :key="todo.name" :class="{completed: todo.completed, editing: todo === editing}">
           <div class="view">
             <div class="task">
@@ -40,6 +44,7 @@
             </div>
           </div>
         </li>
+        </draggable>
 
       </ul>
     </div>
@@ -56,7 +61,12 @@
 </template>
 
 <script>
+import draggable from 'vuedraggable'
+
 export default {
+  components: {
+    draggable
+  },
   data () {
     return {
       todos: [{
